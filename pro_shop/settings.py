@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,20 @@ STATICFILES_DIRS = [
 #media files configration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+    
+}
+
+# SMTP configuration
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EEMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kevinconnaughton696@gmail.com'
+EMAIL_HOST_PASSWORD = 'Oktober122!!'
+EMAIL_PORT = 587
+ACCOUNT_EMAIL_VERIFICATION = 'none'
