@@ -3,41 +3,49 @@
 
 {% block content %}
 
-<section class="section-conten padding-y" style="min-height:84vh">
+<section class="section-conten padding-y bg">
 
-<!-- ============================ COMPONENT LOGIN   ================================= -->
+{% include 'includes/alerts.html' %}
+<div class="container">
+	<div class="row">
+	{% include 'includes/dashboard_sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Logged in as:</strong>
+			<span>{{user.full_name}}</span>
+		</header>
+		<div class="card-body">
+			<div class="row">
 
+			<div class="col-md-6">
+				<div class="card" style="text-align:center;">
+					<div class="card-body">
+						<h5 class="card-title">Total Orders</h5>
+						<h4>{{orders_count}}</h4>
+						<a href="{% url 'my_orders' %}">View Orders</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card" style="text-align:center;">
+					<div class="card-body">
+						<img src="{{userprofile.profile_picture.url}}" alt="User Profile Picture" width="50" height="50" style="border-radius:50%;">
+						<p class="mb-0">{{user.email}}</p>
+						<p>{{user.phone_number}}</p>
+					</div>
+				</div>
+			</div>
 
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
 
-	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+		</article> <!-- order-group.// -->
+	</main>
+</div> <!-- row.// -->
+</div>
 
-      <div class="card-body">
-      <h4 class="card-title mb-4">Sign In</h4>
-      {% include 'includes/alerts.html' %}
-      <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-          <div class="form-group">
-			 <input type="email" class="form-control" placeholder="Email Address" name="email">
-          </div> <!-- form-group// -->
-          <div class="form-group">
-			<input type="password" class="form-control" placeholder="Password" name="password">
-          </div> <!-- form-group// -->
-
-          <div class="form-group">
-          	<a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a>
-
-          </div> <!-- form-group form-check .// -->
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-          </div> <!-- form-group// -->
-      </form>
-      </div> <!-- card-body.// -->
-    </div> <!-- card .// -->
-
-     <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
-     <br><br>
-<!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-{% comment %} {% endif %} {% endcomment %}
 
 </section>
+
 {% endblock %}
